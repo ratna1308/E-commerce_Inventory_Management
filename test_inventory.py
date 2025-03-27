@@ -1,5 +1,5 @@
 import pytest
-from models import Database, Inventory
+from app.models import Database, Inventory
 
 @pytest.fixture
 def db():
