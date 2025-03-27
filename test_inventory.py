@@ -4,7 +4,7 @@ from app.models import Database, Inventory
 @pytest.fixture
 def db():
     """Creates a test database instance."""
-    test_db = Database(db_name=":memory:") 
+    test_db = Database(db_name=":inventory.db:") 
     return test_db
 
 @pytest.fixture
