@@ -2,7 +2,7 @@ import sqlite3
 from typing import List
 
 class Database:
-    def __init__(self, db_name="app/inventory.db"):
+    def __init__(self, db_name="inventory.db"):
         self.db_name = db_name  
         self.create_tables()
 
