@@ -37,7 +37,6 @@ class Database:
             row = cursor.fetchone()
             return dict(row) if row else None
 
-
 class Inventory:
     def __init__(self, db: Database):
         self.db = db
@@ -54,6 +53,19 @@ class Inventory:
     def remove_product(self, product_id: str):
         self.db.execute("DELETE FROM products WHERE id = ?", (product_id,))
 
+    def remove_category(self, category_name: str):
+        """Delete a category from the database if it exists and has no products."""
+        category = self.get_category(category_name)
+        if not category:
+            return False  
+
+        products_in_category = self.db.fetchall("SELECT id FROM products WHERE category_id = ?", (category["id"],))
+        if products_in_category:
+            raise Exception("Cannot delete category with existing products.")
+
+        self.db.execute("DELETE FROM categories WHERE name = ?", (category_name,))
+        return True    
+    
     def get_product(self, product_id: str):
         return self.db.fetchone("SELECT p.id, p.name, p.price, p.quantity, c.name as category FROM products p LEFT JOIN categories c ON p.category_id = c.id WHERE p.id = ?", (product_id,))
 
@@ -72,6 +84,7 @@ class Inventory:
     def get_all_categories(self):
         return self.db.fetchall("SELECT * FROM categories")
 
+    
     def __str__(self):
         total_products = self.db.fetchone('SELECT COUNT(*) as count FROM products')["count"]
         total_categories = self.db.fetchone('SELECT COUNT(*) as count FROM categories')["count"]
