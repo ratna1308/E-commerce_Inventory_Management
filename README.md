@@ -40,8 +40,7 @@ This is a simple Inventory Management System built with **Python (Flask, SQLAlch
 - **Export Inventory Data (CSV/Excel)**
 - **User Authentication & Role-Based Access**
 
-## Author
-Developed by [Ratna Sonawane].
+
 
 ---
 
@@ -129,6 +128,25 @@ E-commerce-Inventory-Management/
   }
   ```
 
+  
+# Factory Pattern (Best Choice for Core Functionality)
+The Factory Pattern is essential for efficiently managing the creation of Product and Category objects. It helps keep the code clean and scalable.
+
+# Strategy Pattern (Useful for Pricing & Discount Logic)
+This pattern is useful when we need to modify Product Pricing or apply different Discount Strategies.
+
+It provides flexible code that allows us to change discount strategies at runtime.
+
+If you need to implement multiple discount policies (e.g., 10% seasonal discount, 20% clearance discount), this pattern is highly effective.
+
+# Observer Pattern (Useful for Notifications)
+This pattern is useful for sending notifications when a Product is added, updated, or removed.
+
+If  building a GUI, the Observer Pattern can be used to automatically update the UI whenever changes occur.
+
+If you want to integrate an Email/SMS Notification System, the Observer Pattern is the right choice.
+
+
 ## Testing
 To run tests:
 ```bash
@@ -141,7 +159,11 @@ pytest test_inventory.py
 - **Get all categroies**: `http://127.0.0.1:5000/categories`
 - **Get particular categroie**: `http://127.0.0.1:5000/categories/Accessories`
 
-- **POST  create products**: `GET http://127.0.0.1:5000/products/`
-- **PUT   Update product**: `http://127.0.0.1:5000/products/P100001`
+- **POST    Create products**: `GET http://127.0.0.1:5000/products/`
+- **PUT     Update product**: `http://127.0.0.1:5000/products/P100001`
+- **DELETE  Delete_product_by_id**: `http://127.0.0.1:5000/products/P100001`
+- **DELETE  Delete_category_by_name**: `http://127.0.0.1:5000/categories/Accessories`
 
 
+## 
+Developed by [Ratna Sonawane].
